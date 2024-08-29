@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -e
+
+#TODO:
+# Update to this because there is a json page
+# curl -O "$(curl https://ziglang.org/download/index.json | jq -r '.master."x86_64-linux".tarball')"
+
+wget --output-document /tmp/zig-downloads-page "https://ziglang.org/download/"
+
+#
+# Look for a link of this form:
+# https://ziglang.org/builds/zig-linux-x86_64-x.x.x-dev.xx+xxxxxxxxx.tar.xz
+update_link=$(grep -oP "https:\/\/ziglang\.org\/builds\/zig-linux-x86_64-.*?\..*?\..*?-dev\..{2}\+.{9}\.tar\.xz" /tmp/zig-downloads-page |\
+    head -n 1)
+
+update_compressed=/tmp/"$(echo $update_link | grep -oP "zig-.*")"
+
+wget --output-document $update_compressed $update_link
+tar xf $update_compressed --directory=/tmp/
+
+update_directory=/tmp/"$(echo $update_compressed | grep -oP 'zig-linux-x86_64-.*?\..*?\..*?-dev\..{2}\+.{9}')"
+
+if [ -d "$HOME"/.zig ]; then
+    if [ -d "$HOME"/.zig.bak ]; then
+        rm -r "$HOME"/.zig.bak
+    fi
+    mv "$HOME"/.zig "$HOME"/.zig.bak
+fi
+mv $update_directory "$HOME"/.zig
+
+# Cleanup
+rm $update_compressed
+rm /tmp/zig-downloads-page

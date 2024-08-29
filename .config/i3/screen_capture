@@ -1,0 +1,17 @@
+# saved
+bindsym $screencap_key exec --no-startup-id \
+        maim --hidecursor --format=png \
+        $screencap_save
+bindsym $mod+$screencap_key exec --no-startup-id \
+        maim --hidecursor --format=png --window $(xdotool getactivewindow) \
+        $screencap_save
+bindsym Shift+$screencap_key exec --no-startup-id \
+        maim --hidecursor --format=png --select \
+        $screencap_save
+# clipboard
+bindsym Ctrl+$screencap_key exec --no-startup-id \
+        maim --hidecursor --format=png | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+$screencap_key exec --no-startup-id \
+        maim --hidecursor --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+$screencap_key exec --no-startup-id \
+        maim --hidecursor --format=png --select | xclip -selection clipboard -t image/png

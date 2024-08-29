@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+usage="\
+Usage: scale-to-screen-size [-a] INFILE OUTFILE
+  -a Keep aspect ratio"
+
+keepratio=false
+while true; do case "$1" in
+    -a) keepratio=true; shift;;
+    *)  break;;
+esac; done
+
+infile=$1
+outfile=$2
+[[ -z $infile ]] && { echo 1>&2 "$usage"; exit 1; }
+[[ -z $outfile ]] && { echo 1>&2 "$usage"; exit 1; }
+[[ -f $infile ]] || { echo 1>&2 "$infile does not exit"; exit 2; }
+
+dimensions=$(xdpyinfo | grep dimensions | cut -d\  -f7)
+if $keepratio; then
+    magick $infile -resize $dimensions $outfile
+else
+    magick $infile -resize $dimensions\! $outfile
+fi

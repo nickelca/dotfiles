@@ -1,0 +1,3 @@
+desktop-file-validate ~/.local/share/applications/*.desktop
+update-desktop-database ~/.local/share/applications
+sed -n -r -e "s/^Exec=(\S*).*/chmod +x \1/e" ~/.local/share/applications/*.desktop

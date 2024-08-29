@@ -1,0 +1,4 @@
+bindsym $mod+F1 exec firefox
+bindsym $mod+F2 exec alacritty
+bindsym $mod+F3 exec Discord
+bindsym $mod+F4 exec librewolf -private-window
