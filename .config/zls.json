@@ -17,6 +17,6 @@
     "dangerous_comptime_experiments_do_not_enable": false,
     "skip_std_references": false,
     "prefer_ast_check_as_child_process": true,
-    "zig_lib_path": "/home/cnickel/programs/zig/lib",
-    "zig_exe_path": "/home/cnickel/programs/zig/zig"
+    "zig_lib_path": "/home/cnickel/.zig/lib",
+    "zig_exe_path": "/home/cnickel/.zig/zig"
 }

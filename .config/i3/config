@@ -1,7 +1,6 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $wallpaper ~/wallpaper/sequoia-warm.png
-set $lockscreen ~/wallpaper/lockscreen.png
 set $screencap_key F6
 set $screencap_save ~/Pictures/Screenshots/"Screenshot from $(date -u +'%Y-%m-%d %H-%M-%S').png"
 set $mod Mod4
@@ -20,9 +19,8 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-set $lock_cmd i3lock --nofork -k -i $lockscreen
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock_cmd
-bindsym $mod+i exec --no-startup-id $lock_cmd
+exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen
+bindsym $mod+i exec --no-startup-id lock-screen
 
 exec --no-startup-id nm-applet
 

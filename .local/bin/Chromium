@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+flatpak run io.github.ungoogled_software.ungoogled_chromium
