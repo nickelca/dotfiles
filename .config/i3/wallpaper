@@ -1,0 +1,19 @@
+# --bg-center
+#     Center the file on the background. If it is too small, it will be
+#     surrounded by a border as specified by --image-bg.
+# --bg-fill
+#     Like --bg-scale, but preserves aspect ratio by zooming the image until it
+#     fits. Either a horizontal or a vertical part of the image will be cut off
+# --bg-max
+#     Like --bg-fill, but scale the image to the maximum size that fits the
+#     screen with borders on one side. The border color can be set using
+#     --image-bg.
+# --bg-scale
+#     Fit the file into the background without repeating it, cutting off stuff
+#     or using borders. But the aspect ratio is not preserved either.
+# --bg-tile
+#     Tile (repeat) the image in case it is too small for the screen
+
+set $wallpaper --bg-scale ~/wallpaper/sequoia-warm.png
+exec --no-startup-id feh --no-fehbg $wallpaper
+bindsym $mod+Shift+w exec --no-startup-id feh --no-fehbg $wallpaper
