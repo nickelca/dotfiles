@@ -2,8 +2,14 @@
 
 set $screencap_key F6
 set $screencap_save ~/Pictures/Screenshots/"Screenshot from $(date -u +'%Y-%m-%d %H-%M-%S').png"
-set $mod Mod4
 set $rofi_dir ~/.config/rofi
+
+set $mod Mod4
+set $alt Mod1
+set $ctrl Control
+set $shift Shift
+set $larrow Left
+set $rarrow Right
 
 # hide title bar
 default_border pixel 0
@@ -12,6 +18,9 @@ for_window [class="^.*"] border pixel 0
 font pango:monospace 0
 
 include ./wallpaper
+
+bindsym $mod+$shift+r restart
+bindsym $mod+$shift+c reload
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -22,8 +31,6 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen
 bindsym $mod+i exec --no-startup-id lock-screen
 
-# exec --no-startup-id nm-applet
-
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 # bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT-SINK@ +1%
@@ -33,12 +40,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
+bindsym $shift+XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
+bindsym $shift+XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
 bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
 
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -50,11 +57,11 @@ tiling_drag modifier titlebar
 include ./app_keybinds
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+$shift+q kill
 
 bindsym $mod+d exec rofi -no-lazy-grab -show drun -theme "$rofi_dir/searcher.rasi" -show-icons
-bindsym $mod+Shift+d exec rofi -no-lazy-grab -show window -theme "$rofi_dir/active_apps.rasi" -show-icons
-bindsym $mod+Shift+e exec rofi -modi 'Powermenu:$rofi_dir/powermenu.sh' -theme "$rofi_dir/powermenu.rasi" -show Powermenu
+bindsym $mod+$shift+d exec rofi -no-lazy-grab -show window -theme "$rofi_dir/active_apps.rasi" -show-icons
+bindsym $mod+$shift+e exec rofi -modi 'Powermenu:$rofi_dir/powermenu.sh' -theme "$rofi_dir/powermenu.rasi" -show Powermenu
 
 # change focus
 bindsym $mod+j focus left
@@ -63,15 +70,13 @@ bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+colon move right
+bindsym $mod+$shift+j move left
+bindsym $mod+$shift+k move down
+bindsym $mod+$shift+l move up
+bindsym $mod+$shift+colon move right
 
-# split horizontal
+# split [h]orizontal or [v]ertical
 bindsym $mod+h split h
-
-# split vertical
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
@@ -83,7 +88,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+$shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -96,7 +101,8 @@ bindsym $mod+space focus mode_toggle
 
 include ./workspace
 
-# resize window (you can also use the mouse for that)
+# Can use mouse to resize
+bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -109,19 +115,12 @@ mode "resize" {
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
 
 include ./screen_capture
 include ./colors
