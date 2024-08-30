@@ -1,4 +1,4 @@
-strength_exact=0
+strength_exact=1
 sleep_pid=0
 
 toggle() {
@@ -11,6 +11,8 @@ toggle() {
 
 trap "toggle" USR1
 
+network_name_color="%{F#F0C674}"
+connection_color="%{F-}"
 
 while true; do
     dev=$(ip --json route get 192.168.0.1 | jq -r '.[0].dev')
@@ -18,7 +20,7 @@ while true; do
     connection_strength=$(nmcli -t -f SSID,SIGNAL dev wifi list | grep "^$network_name:" | cut -d : -f 2)
 
     if [[ $strength_exact -eq 1 ]]; then
-        echo $network_name "($connection_strength%)"
+        echo $network_name_color$network_name $connection_color"($connection_strength%)"
     else
         symbol="!"
         if [[ $connection_strength -gt 80 ]]; then
@@ -28,7 +30,7 @@ while true; do
         elif [[ $connection_strength -gt 20 ]]; then
             symbol="-"
         fi
-        echo $network_name $symbol
+        echo $network_name_color$network_name $connection_color$symbol
     fi
 
     sleep 5 &
