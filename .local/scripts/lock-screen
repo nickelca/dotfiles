@@ -10,6 +10,7 @@ WRONG='#b20000ff'
 PRESS='#acb231e6'
 VERIFYING='#00564dE6'
 
+# datetime formatting https://en.cppreference.com/w/cpp/io/manip/put_time
 i3lock                            \
     --insidever-color=$BLANK      \
     --ringver-color=$VERIFYING    \
@@ -41,10 +42,11 @@ i3lock                            \
     --wrong-text=""               \
     --noinput-text=""             \
     --force-clock                 \
-    --time-str="%H:%M:%S"         \
+    --ind-pos="w/2:2*h/3"         \
+    --time-str="%I:%M:%S %p"      \
     --time-size=80                \
     --time-pos="ix:300"           \
-    --date-str="%d. %h %Y"        \
+    --date-str="%d. %B %Y"        \
     --date-size=60                \
     --date-pos="ix:ty+80"         \
     --keylayout 0                 \
