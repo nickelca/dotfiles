@@ -3,6 +3,7 @@
 set $screencap_key F6
 set $screencap_save ~/Pictures/Screenshots/"Screenshot from $(date -u +'%Y-%m-%d %H-%M-%S').png"
 set $mod Mod4
+set $rofi_dir ~/.config/rofi
 
 # hide title bar
 default_border pixel 0
@@ -51,10 +52,9 @@ include ./app_keybinds
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+Shift+d exec rofi -no-lazy-grab -show drun -theme "~/.config/rofi/searcher.rasi" -show-icons
-bindsym $mod+Ctrl+d exec rofi -no-lazy-grab -show window -theme "~/.config/rofi/active_apps.rasi" -show-icons
-# bindcode $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+d exec rofi -no-lazy-grab -show drun -theme "$rofi_dir/searcher.rasi" -show-icons
+bindsym $mod+Shift+d exec rofi -no-lazy-grab -show window -theme "$rofi_dir/active_apps.rasi" -show-icons
+bindsym $mod+Shift+e exec rofi -modi 'Powermenu:$rofi_dir/powermenu.sh' -theme "$rofi_dir/powermenu.rasi" -show Powermenu
 
 # change focus
 bindsym $mod+j focus left
@@ -95,10 +95,6 @@ bindsym $mod+space focus mode_toggle
 #bindsym $mod+d focus child
 
 include ./workspace
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
