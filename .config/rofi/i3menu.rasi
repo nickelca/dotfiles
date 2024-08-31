@@ -10,16 +10,13 @@ configuration {
     kb-move-char-back: "Control+b";
     kb-select-1: "1";
     kb-select-2: "2";
-    kb-select-3: "3";
-    kb-select-4: "4";
-    kb-select-5: "5";
 }
 
 @import "colors.rasi"
 
 window {
     transparency : "real";
-    width: 580px;
+    width: 260px;
     height: 120px;
     background-color: @win-bg;
     border-radius : 5px;
@@ -27,14 +24,14 @@ window {
 }
 
 mainbox {
-    border:  0;
+    border: 0px;
     padding: 0;
     children: [listview];
     background-color: transparent;
 }
 
 listview {
-    columns: 5;
+    columns: 2;
     layout: vertical;
     background-color: transparent;
 }
@@ -58,42 +55,25 @@ element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
     background-color: transparent;
-    text-color:       @fg;
+    text-color: @fg;
 }
 
 element.normal.normal {
     background-color: rgba(0, 0, 0, 0);
-    text-color:       @fg;
+    text-color: @fg;
 }
 
 element.selected.normal {
     background-color: @selected-bg;
-    text-color:       @selected-fg;
+    text-color: @selected-fg;
     border-color: #d07ef2;
 }
 
 element.alternate.normal {
     background-color: rgba(0,0,0,0);
-    text-color:       @fg;
-}
-
-element-text.selected.normal {
-    text-color:       @selected-fg;
-}
-
-/*
-mode-switcher {
-    border:       0px 0px 0px ;
-    border-color: @separatorcolor;
-}
-
-button {
-    spacing:    0;
     text-color: @fg;
 }
 
-button.selected {
-    background-color: @selected-bg;
-    text-color:       @selected-fg;
+element-text.selected.normal {
+    text-color: @selected-fg;
 }
-*/

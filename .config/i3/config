@@ -19,9 +19,6 @@ font pango:monospace 0
 
 include ./wallpaper
 
-bindsym $mod+$shift+r restart
-bindsym $mod+$shift+c reload
-
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
@@ -29,7 +26,6 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen
-bindsym $mod+i exec --no-startup-id lock-screen
 
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -62,6 +58,7 @@ bindsym $mod+$shift+q kill
 bindsym $mod+d exec rofi -no-lazy-grab -show drun -theme "$rofi_dir/searcher.rasi" -show-icons
 bindsym $mod+$shift+d exec rofi -no-lazy-grab -show window -theme "$rofi_dir/active_apps.rasi" -show-icons
 bindsym $mod+$shift+e exec rofi -modi 'Powermenu:$rofi_dir/powermenu.sh' -theme "$rofi_dir/powermenu.rasi" -show Powermenu
+bindsym $mod+$shift+i exec rofi -modi 'i3menu:$rofi_dir/i3menu.sh' -theme "$rofi_dir/i3menu.rasi" -show i3menu
 
 # change focus
 bindsym $mod+j focus left
