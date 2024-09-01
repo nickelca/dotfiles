@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 if [ -z "$@" ]; then
+    # echo -en "Restart\0icon\x1freplay\n"
+    # echo -en "Reload Config\0icon\x1fsync\n"
     echo -en "Restart\0icon\x1fsystem-restart\n"
     echo -en "Reload Config\0icon\x1fsystem-log-out\n"
 else

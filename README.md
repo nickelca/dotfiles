@@ -12,7 +12,9 @@ My configuration for my desktop environment
 - Terminal emulator: [alacritty](https://github.com/alacritty/alacritty)
 - Screenshots: [maim](https://github.com/naelstrof/maim)
 - Compositor: [picom](https://github.com/yshui/picom)
-- Icons: [fluent](https://github.com/vinceliuice/Fluent-icon-theme)
+- Icons:
+    - [fluent](https://github.com/vinceliuice/Fluent-icon-theme)
+    - [paper](https://github.com/snwh/paper-icon-theme)
 
 ### TODO:
 - [ ] Polybar
@@ -22,6 +24,7 @@ My configuration for my desktop environment
     - [ ] Battery display
         - [ ] Left click to toggle between level icon & exact
         - [ ] Estimated time left
+        - [x] Basic display
     - [ ] WiFi display
         - [ ] Icons instead of goofy chars
         - [ ] Fix no internet and eth display

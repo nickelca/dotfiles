@@ -3,7 +3,7 @@ configuration {
     show-icons: true;
     font: "Iosevka 10";
     window-format: "{c}";
-    icon-theme: "candy-icons";
+    icon-theme: "Fluent";
     timeout {
         action: "kb-cancel";
         delay:  0;
