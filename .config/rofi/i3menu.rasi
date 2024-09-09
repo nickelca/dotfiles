@@ -3,7 +3,7 @@ configuration {
     show-icons: true;
     font: "Iosevka 10";
     window-format: "{c}";
-    icon-theme: "Fluent";
+    icon-theme: "MaterialIcons";
     kb-element-next: "Tab,Right";
     kb-element-prev: "Left";
     kb-move-char-forward: "Control+f";
@@ -41,6 +41,7 @@ element {
     padding: 10px;
     border-radius: 5px;
     orientation: vertical;
+    children: [ element-icon, element-text ];
 }
 
 element-icon {

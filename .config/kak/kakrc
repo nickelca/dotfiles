@@ -1,0 +1,23 @@
+colorscheme tomorrow-night
+
+add-highlighter global/ number-lines -relative -hlcursor
+add-highlighter global/ show-matching
+
+set-option global ui_options terminal_assistant=cat
+set-option global scrolloff 8,0
+
+map -docstring "yank the selection into the clipboard" global user y "<a-|> xsel -i -b<ret>"
+map -docstring "paste the clipboard" global user p "<a-!> xsel -b<ret>"
+
+add-highlighter global/ show-whitespaces -lf " " -tab "»" -spc "·" -only-trailing
+add-highlighter global/ show-whitespaces -lf " " -tab "»" -spc " "
+
+set-option global tabstop 4
+set-option global indentwidth 4
+hook global InsertChar \t %{ try %{
+    execute-keys -draft "h<a-h><a-k>\A\h+\z<ret><a-;>;%opt{indentwidth}@"
+}}
+
+hook global InsertDelete ' ' %{ try %{
+    execute-keys -draft 'h<a-h><a-k>\A\h+\z<ret>i<space><esc><lt>'
+}}
