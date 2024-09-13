@@ -10,8 +10,8 @@ alias vim="nvim"
 
 PERSONAL="$XDG_CONFIG_HOME/personal"
 
-bindkey -s ^f 'tmux-sessionizer\n'
-bindkey -s  'tmux attach\n'
+bindkey -s ^f '\ntmux-sessionizer\n'
+bindkey -s  '\ntmux attach\n'
 
 alias fcd='cd $(find -mindepth 0 -maxdepth 1 -type d | cut -c3- | fzf)'
 [[ -z $WAYLAND_DISPLAY ]] || alias codium='codium  \
