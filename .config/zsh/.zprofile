@@ -12,7 +12,6 @@ PERSONAL="$XDG_CONFIG_HOME/personal"
 
 bindkey -s ^f '\ntmux-sessionizer\n'
 alias dir="tmux-sessionizer"
-bindkey -s  '\ntmux attach\n'
 alias a="tmux attach"
 
 [[ -z $WAYLAND_DISPLAY ]] || alias codium='codium  \
