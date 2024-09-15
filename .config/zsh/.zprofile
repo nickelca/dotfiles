@@ -11,9 +11,10 @@ alias vim="nvim"
 PERSONAL="$XDG_CONFIG_HOME/personal"
 
 bindkey -s ^f '\ntmux-sessionizer\n'
+alias dir="tmux-sessionizer"
 bindkey -s  '\ntmux attach\n'
+alias a="tmux attach"
 
-alias fcd='cd $(find -mindepth 0 -maxdepth 1 -type d | cut -c3- | fzf)'
 [[ -z $WAYLAND_DISPLAY ]] || alias codium='codium  \
                                 --ozone-platform-hint=auto \
                                 --enable-features=WaylandWindowDecorations'
@@ -36,7 +37,39 @@ export GIT_EDITOR=$VIM
 
 source "$HOME/.cargo/env"
 
-source "$ZDOTDIR/path"
+prepath() {
+    local usage="\
+Usage: prepath [-f] [-n] [-q] DIR
+  -f Force dir to front of path even if already in path
+  -n Nonexistent dirs do not return error status
+  -q Quiet mode"
+
+    local tofront=false errcode=1 qecho=echo
+    while true; do case "$1" in
+        -f)     tofront=true;       shift;;
+        -n)     errcode=0;          shift;;
+        -q)     qecho=':';          shift;;
+        *)      break;;
+    esac; done
+    # Bad params always produce message and error code
+    [[ -z $1 ]] && { echo 1>&2 "$usage"; return 1; }
+
+    [[ -d $1 ]] || { $qecho 1>&2 "$1 is not a directory."; return $errcode; }
+    dir="$(realpath "$1")"
+    if [[ :$PATH: =~ :$dir: ]]; then
+        $tofront || { $qecho 1>&2 "$dir already in path."; return 0; }
+        PATH="${PATH#$dir:}"        # remove if at start
+        PATH="${PATH%:$dir}"        # remove if at end
+        PATH="${PATH//:$dir:/:}"    # remove if in middle
+    fi
+    PATH="$dir${PATH:+:}${PATH:-}"
+}
+
+prepath -q "$HOME/.zig"
+prepath -q "$HOME/.local/scripts"
+prepath -q "$HOME/.local/bin"
+prepath -q "/usr/local/cuda-12.3/bin"
+prepath -q "/opt/riscv/bin"
 
 # Redirect config files
 export HASKELINE="$HOME/.config/.haskeline"
