@@ -52,13 +52,10 @@ git_prompt_info() {
     fi
     local symbol="%F{green}✔"
     local symbol_bad="%F{yellow}✗"
-    if [[ -n $(git_dirty) ]]; then
-        symbol=$symbol_bad
-    fi
-    if [[ "$(git_num_untracked_files)" != "0" ]]; then
-        symbol=$symbol_bad
-    fi
-    if [[ "$(git_uncommitted_changes)" != "0" ]]; then
+    if [[ -n $(git_dirty) ||
+        "$(git_num_untracked_files)" != "0" ||
+        "$(git_uncommitted_changes)" != "0" ]]; then
+
         symbol=$symbol_bad
     fi
     print -rP "%F{blue}%Bgit:(%F{red}$ref%F{blue}) $symbol%b "
