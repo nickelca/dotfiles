@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Vesktop
+Exec=/home/cnickel/.local/bin/Vesktop
+Terminal=false
+Type=Application
