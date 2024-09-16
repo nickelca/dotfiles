@@ -12,6 +12,11 @@ alias l='ls -lFh'
 alias ll='ls -laFh'
 alias grep='grep --color'
 
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
 PERSONAL="$XDG_CONFIG_HOME/personal"
 
 bindkey -s ^f '\ntmux-sessionizer\n'
