@@ -16,6 +16,7 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey "^H" backward-kill-word
 
 PERSONAL="$XDG_CONFIG_HOME/personal"
 
