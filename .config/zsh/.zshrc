@@ -16,9 +16,10 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # case insensitive completion
-autoload -U compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # "ma=48;5;153;1"
 
 setopt autocd
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
