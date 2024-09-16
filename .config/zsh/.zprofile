@@ -8,6 +8,10 @@ export XDG_STATE_HOME="$HOME/.local/state"
 VIM="nvim"
 alias vim="nvim"
 
+alias l='ls -lFh'
+alias ll='ls -laFh'
+alias grep='grep --color'
+
 PERSONAL="$XDG_CONFIG_HOME/personal"
 
 bindkey -s ^f '\ntmux-sessionizer\n'
@@ -70,13 +74,6 @@ prepath -q "$HOME/.local/bin"
 prepath -q "/usr/local/cuda-12.3/bin"
 prepath -q "/opt/riscv/bin"
 
-# Redirect config files
 export HASKELINE="$HOME/.config/.haskeline"
-
-# Redirect history files
-export CLOJURE_HISTORY="$HOME/.hist/.clojure"
-export PYTHONHISTORY="$HOME/.hist/.python"
-export NODE_REPL_HISTORY="$HOME/.hist/.node_repl"
-export HISTFILE="$HOME/.hist"
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
