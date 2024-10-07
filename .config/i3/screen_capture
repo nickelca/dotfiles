@@ -1,7 +1,10 @@
-# saved
 bindsym $screencap_key exec --no-startup-id \
-        maim --hidecursor --format=png \
-        $screencap_save
+        flameshot gui
+
+# saved
+# bindsym $screencap_key exec --no-startup-id \
+#         maim --hidecursor --format=png \
+#         $screencap_save
 bindsym $mod+$screencap_key exec --no-startup-id \
         maim --hidecursor --format=png --window $(xdotool getactivewindow) \
         $screencap_save

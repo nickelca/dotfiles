@@ -11,6 +11,7 @@ My configuration for my desktop environment
 - Terminal emulator: [alacritty](https://github.com/alacritty/alacritty)
 - Screenshots: [maim](https://github.com/naelstrof/maim)
 - Compositor: [picom](https://github.com/yshui/picom)
+- Backlight: [light](https://gitlab.com/dpeukert/light)
 - Icons:
     - [fluent](https://github.com/vinceliuice/Fluent-icon-theme)
     - [paper](https://github.com/snwh/paper-icon-theme)

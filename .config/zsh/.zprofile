@@ -11,6 +11,8 @@ alias vim="nvim"
 alias l='ls -lFh'
 alias ll='ls -laFh'
 alias grep='grep --color'
+alias gs='git status'
+alias bt='bluetoothctl'
 
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
@@ -41,7 +43,7 @@ CLJ() {
 }
 
 export CC="gcc"
-export CXX="clang++"
+export CXX="g++"
 export GIT_EDITOR=$VIM
 
 source "$HOME/.cargo/env"
@@ -81,5 +83,7 @@ prepath -q "/usr/local/cuda-12.3/bin"
 prepath -q "/opt/riscv/bin"
 
 export HASKELINE="$HOME/.config/.haskeline"
+
+bindkey -e
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

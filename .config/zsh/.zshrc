@@ -52,20 +52,21 @@ git_prompt_info() {
     if [[ -z $ref ]]; then
         return 0
     fi
-    local symbol="%F{green}✔"
-    local symbol_bad="%F{yellow}✗"
+    local symbol="%{%F{green}%}✔"
+    local symbol_bad="%{%F{yellow}%}✗"
     if [[ -n $(git_dirty) ||
         "$(git_num_untracked_files)" != "0" ||
         "$(git_uncommitted_changes)" != "0" ]]; then
 
         symbol=$symbol_bad
     fi
-    print -rP "%F{blue}%Bgit:(%F{red}$ref%F{blue}) $symbol%b "
+    print -rP "%{%F{blue}%}%Bgit:(%{%F{red}%}$ref%{%F{blue}%}) $symbol%b "
 }
 
 precmd() {
-    print -rP '%F{yellow}%n@%m%f:%F{blue}%4~%f'
+    print -rP '%{%F{yellow}%}%n@%m%f:%{%F{blue}%}%4~%{%f%}'
 }
 
 setopt PROMPT_SUBST
-export PS1='$(git_prompt_info)%(?.%F{green}.%F{red})%(!.#.$)%f '
+# export PS1='$(git_prompt_info)%{%(?.%F{green}.%F{red})%}%(!.#.$)%{%f%} '
+export PS1='%{%(?.%F{green}.%F{red})%}%(!.#.$)%{%f%} '
